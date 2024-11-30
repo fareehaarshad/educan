@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Educan Tutoring</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+	
+	
+	<div class="header-container">
+		<div class="logo" style="display: flex; flex-direction: column; align-items: flex-start;">
+			<img src="assets\images\logo.png" style="width: 5.6em; height: 1.9em;">
+		</div>
+		<a href="loginPage.html" class="login-link">Login</a>
+	</div>
+	
+	
+	
+	<div class="cover-container">
+		<div class="overlay"></div> <!-- Grey overlay -->
+		<img src="assets\images\homeImage.png" alt="Educan Tutoring Cover" class="cover-image">
+		<div class="cover-text">
+			<h1 style="text-align: center; color: orange; margin: 0px; font-size: 4rem;">educan</h1>
+			<h4 style="text-align: center; color: white; margin-top: 0; margin-bottom: 1rem; font-size: 1.6rem;">Tutoring</h4>
+			<p>⚲ 1303 County Rd. 22, Unit 304, Lakeshore<br>☏ (519) 727-0910</p>
+			<a href="#offerings">
+				<input id="yellowButton" type="submit" value="Offerings">
+			</a>
+			&nbsp;
+			<a href="#signup">
+				<input id="yellowButton" type="submit" value="Exam Prep">
+			</a>
+		</div>
+	</div>
+	
+	<!-- About Section -->
+    <section id="about">
+        <h1 style="text-align: center;">WE MAKE<br>LEARNING FUN</h1>
+        <div style="width: 80vw; max-width: 60%; margin: 0 auto;">
+			<p style="text-align: center;">
+				At Educan Tutoring, we provide personalized tutoring services tailored to students of various ages and skill levels. Our team of experienced tutors is committed to supporting your academic journey. We focus on creating a learning experience that suits your individual needs, ensuring that you gain confidence, improve your skills, and achieve your goals. With Educan, success is within your reach!
+			</p>
+		</div>
+    </section>
+
+
+    <!-- Offerings Section -->
+    <section id="offerings">
+        <h2>Our Offerings</h2>
+        <ul>
+            <li><strong>Start Reading</strong> (Ages 5-8)</li>
+            <li><strong>Math</strong> (K-12)</li>
+            <li><strong>English</strong> (K-12)</li>
+            <li><strong>Homework Help</strong> (K-12)</li>
+        </ul>
+    </section>
+
+    <!-- Sign-Up Portal Section -->
+    <section id="signup">
+        <h2>Sign Up for Exam Prep</h2>
+
+
+
+
+
+	<form id="signupForm" method="POST" action="register.php">
+        <div>
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" required>
+        </div>
+        <div>
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required>
+        </div>
+        <div>
+            <label for="high_school">High School Name</label>
+            <input type="text" id="high_school" name="high_school" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="prep_class">What prep class are you signing up for?</label>
+            <select id="prep_class" name="prep_class" required>
+                <option value="" disabled selected>Select a prep class</option>
+                <option value="English (Grade 9-12)">English (Grade 9-12)</option>
+                <option value="History (Grade 10)">History (Grade 10)</option>
+                <option value="Math (Grade 9)">Math (Grade 9)</option>
+                <option value="Math (Grade 10)">Math (Grade 10)</option>
+            </select>
+        </div>
+        <div>
+            <label for="prep_date">Time and Date for the Prep Class</label>
+            <select id="prep_date" name="prep_date" required>
+                <option value="" disabled selected>Select a date and time</option>
+                <!-- Dynamic date options will be added here -->
+            </select>
+        </div>
+        <br>
+        <button id="blueButton" type="submit">Register</button>
+    </form>
+
+
+
+    <script>
+        // Add event listener for the prep_class change to update prep_date options
+        document.getElementById('prep_class').addEventListener('change', function() {
+            var prepClass = this.value;
+            var prepDate = document.getElementById('prep_date');
+            
+            // Clear any previous options
+            prepDate.innerHTML = '';
+            
+            // Create an array of available date options
+            var availableDates = [];
+            
+            if (prepClass === 'English (Grade 9-12)') {
+                availableDates = ['Tue, Jan 14, 2025 (7-9pm)'];
+            } else if (prepClass === 'History (Grade 10)') {
+                availableDates = ['Wed, Jan 15, 2025 (7-9pm)'];
+            } else if (prepClass === 'Math (Grade 9)') {
+                availableDates = [
+                    'Fri, Jan 10, 2025 (7:30pm-9:30pm)',
+                    'Sat, Jan 11, 2025 (7:30pm-9:30pm)',
+                    'Sun, Jan 12, 2025 (7:30pm-9:30pm)'
+                ];
+            } else if (prepClass === 'Math (Grade 10)') {
+                availableDates = [
+                    'Fri, Jan 17, 2025 (7:30pm-9:30pm)',
+                    'Sat, Jan 18, 2025 (7:30pm-9:30pm)',
+                    'Sun, Jan 19, 2025 (7:30pm-9:30pm)'
+                ];
+            }
+            
+            // Add each date option to the select element
+            availableDates.forEach(function(date) {
+                var option = document.createElement('option');
+                option.value = date;
+                option.textContent = date;
+                prepDate.appendChild(option);
+            });
+        });
+
+    </script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+    </section>
+
+	<section id="contact-us">
+        <h2>Contact Us</h2>
+        <form action="sendDetails.php" method="POST">
+            <div>
+			<label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+			</div>
+            
+            <div>
+			<label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+			</div>
+            
+			<div>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required placeholder="Subject of your message">
+			</div>
+            
+            <div>
+			<label for="message">Your Message:</label>
+            <textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
+			</div>
+            <br>
+            <button id="blueButton" type="submit">Submit</button>
+        </form>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Educan Tutoring. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

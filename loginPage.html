@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educan - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery for AJAX -->
+</head>
+<body>
+    <div class="login-container">
+        <h1 style="text-align: center; color: orange; margin: 0px">educan</h1>
+        <h4 style="text-align: center; color: white; margin-top: 0; margin-bottom: 2rem;">Tutoring</h4>
+        
+        <!-- Login Form -->
+        <form id="login-form">
+            <input type="username" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password">
+			<div id="error-message" style="color: red; text-align: center; display: none; margin-bottom:0rem"></div>
+            <input id="loginButton" type="submit" value="Login"> 
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            // AJAX form submission
+            $('#login-form').on('submit', function(event){
+                event.preventDefault(); // Prevent page reload
+
+                // Get form data
+                var username = $('#username').val();
+                var password = $('#password').val();
+
+                // Send data using AJAX
+                $.ajax({
+                    url: 'login.php',  // PHP file to handle login
+                    method: 'POST',
+                    data: {
+                        username: username,
+                        password: password
+                    },
+                    success: function(response){
+                        if (response === "success") {
+                            window.location.href = 'portal.php'; // Redirect to portal if login is successful
+                        } else {
+                            // Show error message if login failed
+                            $('#error-message').text("The username/password you’ve entered is incorrect.").show();
+                        }
+                    },
+                    error: function(){
+                        $('#error-message').text("An error occurred. Please try again.").show();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
